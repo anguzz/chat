@@ -15,7 +15,7 @@
   },
   "scripts": {
     "pocketbase": "pocketbase serve",
-    "react": "react-scripts start",
+    "react": "craco start",
     "start": "npm-run-all --parallel react pocketbase",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -38,5 +38,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@craco/craco": "^7.0.0"
   }
 }
