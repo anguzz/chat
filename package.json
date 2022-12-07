@@ -15,8 +15,9 @@
   },
   "scripts": {
     "pocketbase": "pocketbase serve",
-    "react": "craco start",
-    "start": "npm-run-all --parallel react pocketbase",
+    "craco": "craco start",
+    "local":"npm-run-all --parallel craco pocketbase",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
