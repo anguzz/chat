@@ -1,18 +1,9 @@
-
-
-import {client} from './utils/config'
-
+import Messages from './components/messagePage';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p className="text-3xl font-bold underline">
-          hello
-        </p>
-    
-      </header>
-    </div>
+      <Messages />
+   
   );
 }
 
