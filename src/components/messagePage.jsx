@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { client } from '../utils/config'
 import { useNavigate } from 'react-router-dom'
 
@@ -14,7 +15,13 @@ const MessagePage = () => {
   const loggedIn = window.localStorage.getItem('pocketbase_auth')
   const navigate = useNavigate()
   useEffect(() => {
-    if (!loggedIn) navigate('/landingPage')
+    if (!loggedIn) {
+      navigate('/landingPage')
+    } else {
+      if (!client.authStore.isValid) {
+        navigate('/loginPage')
+      }
+    }
   })
 
   // useEffect(() => {
@@ -69,6 +76,17 @@ const MessagePage = () => {
     getLog()
   }, [])
 
+  function handleKeyDown(event) {
+    if (event.keyCode === 13) {
+      createMsg()
+    }
+  }
+
+  function logout() {
+    client.authStore.clear()
+    navigate('/loginPage')
+  }
+
   const createMsg = async () => {
     try {
       const data = {
@@ -103,9 +121,16 @@ const MessagePage = () => {
 
   return (
     <div className="h-screen border w-[screen] relative bg-slate-800">
-      <div className="py-2 px-3.5">
-        <h1 className="text-2xl font-semibold text-white">Group Chat</h1>
+      <div className="m-2 columns-2 py-2 px-3.5">
+        <h1 className="column text-2xl font-semibold text-white">Group Chat</h1>
+        <button
+          className="column float-right p-2 bg-blue-500 text-white rounded-lg"
+          onClick={logout}
+        >
+          Logout
+        </button>
       </div>
+      <hr />
       <div className="flex flex-col space-y-2  py-2 px-2 max-h-[80%] overflow-y-auto">
         {msgLog.length > 0 ? (
           msgLog.map((msg) => (
@@ -128,6 +153,7 @@ const MessagePage = () => {
           placeholder="message"
           className="border p-2 w-full rounded-lg bg-white text-gray-700 placeholder-gray-500"
           onChange={(e) => setMessage({ ...msg, msg: e.target.value })}
+          onKeyDown={handleKeyDown}
           ref={ref}
         />
         <p className="text-red-500 leading-none">{error.length > 0 && error}</p>
