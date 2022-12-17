@@ -37,27 +37,21 @@ const MessagePage = () => {
     if (item.userName === client.authStore.model.username) {
       return (
         <div>
-          <div className="float-right bg-blue-600 p-2 rounded-lg">
+          <div className="float-right bg-blue-600 p-2 rounded-lg rounded-br-none">
             <p className="text-white text-lg text-right">{item.msg}</p>
+            <p className="text-white text-xs text-right">{date}</p>
           </div>
-          <br />
-          <br />
-          <p className="text-white text-sm text-right">
-            posted by: {item.userName} {date}
-          </p>
         </div>
       )
     } else {
       return (
-        <div>
-          <div className="float-left bg-blue-600 p-2 rounded-lg">
+        <div className="chat-message">
+          <div className="float-left bg-blue-600 p-2 rounded-lg rounded-bl-none">
             <p className="text-white text-lg text-left">{item.msg}</p>
+            <p className="text-white text-xs  text-left">
+              posted by: {item.userName} {date}
+            </p>
           </div>
-          <br />
-          <br />
-          <p className="text-white text-sm  text-left">
-            posted by: {item.userName} {date}
-          </p>
         </div>
       )
     }
