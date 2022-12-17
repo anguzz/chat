@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
 import { client } from '../utils/config'
 import { useNavigate } from 'react-router-dom'
 
