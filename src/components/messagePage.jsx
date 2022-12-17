@@ -40,12 +40,15 @@ const MessagePage = () => {
 
   const Msg = ({ item }) => {
     const date = new Date(item.created).toDateString()
+    const time = new Date(item.created).toLocaleTimeString()
     if (item.userName === client.authStore.model.username) {
       return (
         <div>
           <div className="float-right bg-blue-600 p-2 rounded-lg rounded-br-none">
             <p className="text-white text-lg text-right">{item.msg}</p>
-            <p className="text-white text-xs text-right">{date}</p>
+            <p className="text-white text-xs text-right">
+              {date} {time}
+            </p>
           </div>
         </div>
       )
