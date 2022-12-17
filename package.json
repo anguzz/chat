@@ -17,7 +17,7 @@
   "scripts": {
     "pocketbase": "./pocketbase serve",
     "pockethost": "react-scripts start",
-    "start": "npm-run-all --parallel start pocketbase",
+    "start": "npm-run-all --parallel pockethost pocketbase",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
